@@ -1,59 +1,219 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./src/output.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Cinzel', serif;
+        }
+
+
+
+        .card {
+            background: rgba(237, 233, 254, 0.55);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(216, 180, 254, 0.4);
+            width: 100%;
+            max-width: 56rem;
+        }
+
+        .card-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+        }
+
+        .galaxy-panel {
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(255, 105, 180, 0.7) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 70%, rgba(147, 51, 234, 0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+                linear-gradient(160deg, #6d28d9 0%, #be185d 60%, #ec4899 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 15%, white 0%, transparent 100%),
+                radial-gradient(1px 1px at 25% 55%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 60% 20%, white 0%, transparent 100%),
+                radial-gradient(1px 1px at 80% 45%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 45% 75%, white 0%, transparent 100%),
+                radial-gradient(2px 2px at 90% 10%, rgba(255, 255, 255, 0.9) 0%, transparent 100%),
+                radial-gradient(1px 1px at 15% 85%, white 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 70% 60%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 35% 35%, white 0%, transparent 100%),
+                radial-gradient(1px 1px at 55% 90%, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        .moon {
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #e0e7ff, #a5b4fc 50%, #6d28d9 100%);
+            opacity: 0.75;
+            filter: blur(2px);
+        }
+
+        @media (min-width: 768px) {
+            .card-inner {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .galaxy-panel {
+                flex: 1;
+                height: auto !important;
+            }
+
+            .form-panel {
+                flex: 1;
+            }
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            border-radius: 8px;
+            padding: 9px 14px;
+            width: 100%;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.875rem;
+            color: #4c1d95;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+
+        .input-field::placeholder {
+            color: #a78bfa;
+        }
+
+        .input-field:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-register {
+            background: linear-gradient(90deg, #a855f7, #c084fc);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            border: none;
+            border-radius: 8px;
+            padding: 11px;
+            width: 100%;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .btn-register:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <!-- Login Page -->
-    <section class="bg-gradient-to-r from-purple-500 to-purple-100 flex items-center  h-[800px] md:h-screen">
 
-        <div class="flex flex-col md:flex-row mx-auto max-w-7xl  items-center py-10 md:py-5 h-[800px] px-10">
-            <div
-                class="bg-[url('/src/assets/img/zz.png')] object-cover w-full  bg-no-repeat bg-center rounded-t-xl   md:rounded-t-none md:rounded-l-2xl h-full md:h-3/4 flex justify-center items-center">
-                <div class=" pl-10 pr-10">
-                    <h1 class="text-white text-center font-bold text-xl md:text-3xl">Welcome</h1>
-                    <p class="text-white text-left ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione,
-                        ut odio
-                        minus illo quas ducimus necessitatibus sequi eveniet voluptates nulla iure sint? Consequuntur
-                        ,</p> <span class="text-blue-700 text-left">aliquid officia?</span>
+
+<body class="bg-pink-400 min-h-screen items-center flex  justify-center px-4 py-10">
+
+    <div class="card rounded-2xl shadow-2xl overflow-hidden">
+        <div class="card-inner">
+
+            <!-- Galaxy panel -->
+            <div class="galaxy-panel p-7 relative flex items-center justify-center text-center flex-col" id="galaxyPanel">
+                <div class="stars"></div>
+                <div class="moon"></div>
+                <div class="relative z-10 ">
+                    <h2 class="text-white text-2xl font-bold mb-2 drop-shadow-lg">Welcome</h2>
+                    <p class="text-purple-100 text-sm leading-relaxed mb-3 text-left">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ut odio
+                        necessitatibus sequi eveniet voluptates nulla iure
+                        sint? Consequuntur. <a href="#" class="text-blue-300 text-sm hover:underline">aliquid officia?</a>
+                    </p>
+                   
                 </div>
             </div>
 
-            <div
-                class="w-full h-3/4  rounded-b-xl md:rounded-b-none md:rounded-r-2xl  pl-10 pr-10 pt-2 py-1 md:py-6 space-y-1 md:space-y-5  bg-white/50">
-                <h1 class="text-md md:text-2xl font-medium">Register</h1>
-                <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, amet.</p>
-                <div class="grid grid-cols-1 space-y-2 md:space-y-5">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                        <input type="text" placeholder="First name  "
-                            class="border border-black border-solid p-1 md:p-2 rounded-md">
-                        <input type="text" placeholder="Last name  "
-                            class="border border-black border-solid p-1 md:p-2 rounded-md">
-                    </div>
-                    <input type="text" placeholder="Email"
-                        class="border border-black border-solid p-1 md:p-2 rounded-md">
-                    <input type="text" placeholder="Password"
-                        class="border border-black border-solid p-1 md:p-2 rounded-md">
-                    <input type="text" placeholder="Confirm Password"
-                        class="border border-black border-solid p-1 md:p-2 rounded-md">
+            <!-- Form panel -->
+            <div class="form-panel flex flex-col justify-center p-7" id="formPanel">
+                <h1 class="text-xl text-purple-900 mb-1">Register</h1>
+                <p class="text-purple-500 text-xs mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad,
+                    amet.</p>
 
-                    <div>
-                        <input type="checkbox">
-                        <span>I accept the <span class="text-blue-400">Terms of use</span> and <span
-                                class="text-blue-400">Privacy Policy</span></span>
-                    </div>
-
-                    <button class="bg-purple-400 py-2 font-semibold text-md text-white">Register Now</button>
+                <div class="flex flex-col md:flex-row gap-2 mb-3">
+                    <input type="text" placeholder="First name" class="input-field" />
+                    <input type="text" placeholder="Last name" class="input-field" />
                 </div>
+                <input type="email" placeholder="Email" class="input-field mb-3" />
+                <input type="password" placeholder="Password" class="input-field mb-3" />
+                <input type="password" placeholder="Confirm Password" class="input-field mb-4" />
+
+                <label class="flex items-center gap-2 text-xs text-purple-700 mb-4 cursor-pointer flex-wrap">
+                    <input type="checkbox" class="accent-purple-500 w-4 h-4 shrink-0" />
+                    I accept the
+                    <a href="#" class="text-purple-500 hover:underline">Terms of use</a>
+                    and
+                    <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a>
+                </label>
+
+                <button class="btn-register">Register Now</button>
             </div>
+
         </div>
+    </div>
 
 
-    </section>
+
+
+    <script>
+        function syncHeight() {
+            const galaxy = document.getElementById('galaxyPanel');
+            const form = document.getElementById('formPanel');
+            if (window.innerWidth < 768) {
+                galaxy.style.height = form.offsetHeight + 'px';
+            } else {
+                galaxy.style.height = '';
+            }
+        }
+        window.addEventListener('load', syncHeight);
+        window.addEventListener('resize', syncHeight);
+    </script>
 
 </body>
 
